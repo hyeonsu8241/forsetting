@@ -1,0 +1,71 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>BaaN</title>
+
+    <!-- icon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- default style sheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css'%}?after">
+
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+     <meta charset='utf-8'/>
+    <link href='/static/fullcalendar-5.8.0/lib/main.css' rel='stylesheet'/>
+    <script src='/static/fullcalendar-5.8.0/lib/main.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {  //id 캘린더 객체
+                    {#plugins: [ 'dayGrid', 'timeGrid', 'list', 'interaction' ],#}
+                    headerToolbar: {    //https://fullcalendar.io/docs/customButtons 참고
+                        {#툴바 왼쪽 버튼#}
+                        left: 'prev,next today',
+                        {#가운데 년월 타이틀#}
+                        center: 'title',
+                        {#툴바 오른쪽 달 주 일 선택#}
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+
+                    {#클릭 이벤트 : https://dotheright.tistory.com/219 참조#}
+                    dateClick: function () {
+                        {#클릭 시 출력 -> 일정 추가 이벤트 기능 추가 필요#}
+                        alert('a day has been clicked!');
+
+                    }
+                    ,
+
+                    {#pre-parsed object. To demonstrate the simplest case#}
+                    events: [
+                        { // this object will be "parsed" into an Event Object
+                            title: 'The Title', // a property!
+                            start: '2018-09-01', // a property!
+                            end: '2018-09-02' // a property! ** see important note below about 'end' **
+                        }
+                    ],
+
+                    initialView: 'dayGridMonth'   //달(1~30일 등) 기준 달력자체 출력 : 근데 주석처리해도 잘 뜸,,, 무슨 역할인걸까
+
+                })
+            ;
+            calendar.render();
+        });
+
+    </script>
+</head>

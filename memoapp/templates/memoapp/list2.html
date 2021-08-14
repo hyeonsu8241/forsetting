@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css"/>
+    </head>
+
+    <div>
+        <h2>Summernotes</h2>
+        <hr>
+
+        {% for memo in memo_list %}
+        <div style="width:20rem; height:10rem; background-color: pink; border-radius: 1rem;">
+            <a href="{% url 'memoapp:detail' pk=memo.pk %}">{{ memo.title | safe }}</a>
+            <button class="material-icons" data-toggle="modal" data-target="#delete_modal" class="material-icons">delete</button>
+        </div>
+
+        <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">delete memo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this memo?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="delete_modal({{ memo.pk }})" type="button" class="btn btn-dark">delete</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+    <div style="text-align: center">
+      <a href="{% url 'memoapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create Memo
+      </a>
+    </div>
+
+    {% load bootstrap4 %}
+
+    <div id ="memo_add" class="modal fade" role="dialog" data-backdrop="false"
+    style="">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <h4>끄적끄적</h4>
+          <hr>
+
+          <form action="{% url 'memoapp:create' %}" method="post" class="form-inline">
+            {% csrf_token %}
+            <table>
+              {{form.as_table}}
+            </table>
+            <input type="submit" class = "btn btn-primary" value="add">
+            <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+          </form>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function delete_modal( pk ) {
+            location.replace('/memos/list/');
+        }
+    </script>
+
+{% endblock %}

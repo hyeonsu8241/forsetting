@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% block content %}
+  <div>
+    <div>
+      <h4>Memo Update</h4>
+    </div>
+    <form action="{% url 'memoapp:update' pk=target_memo.pk %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+        {{form.as_table}}
+      </table>
+      <input type="submit" class = "btn btn-dark rounded-pill col-6 mt-3">
+    </form>
+  </div>
+{% endblock %}

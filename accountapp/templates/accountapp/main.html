@@ -1,0 +1,53 @@
+{% include 'base.html' %}
+
+<body>
+    <header class="header">
+            <div class="logo">
+                <a href="{% url 'home' %}" class="home_link">BaaN</a>
+            </div>
+            <div class="search">
+                <form method="get" action="{% url 'accountapp:search' %}" class="search_form">
+                    <select name="engine" id="engine">
+                        <option value="google">google</option>
+                        <option value="naver">naver</option>
+                        <option value="youtube">youtube</option>
+                    </select>
+                    <input type="text" name="query" class="search_input">
+                    <input style="font-size: 2.4rem; padding: 0; vertical-align: bottom;" type="submit" class="search_button material-icons" value="search">
+                </form>
+            </div>
+            <div class="gnb">
+                {% if user.is_authenticated %}
+                    {{ user.username }}
+                    <a href="{% url 'accountapp:logout' %}" class="material-icons" style="font-size: 1rem;">logout</a>
+                {% endif %}
+            </div>
+    </header>
+
+{#밑 내용#}
+    <div class="main" >
+        <div >
+            <div class="link_flex_box">
+                <div class="link_box">
+                    <a href="{% url 'bookmarkapp:list' %}">bookmark</a>
+                </div>
+                <div class="link_box">
+                    <a href="{% url 'todoapp:list' %}">todo</a>
+                </div>
+                <div class="link_box">
+                    <a href="{% url 'memoapp:list' %}">memo</a>
+                </div>
+                <div class="link_box">
+                    <a href="{% url 'calendarapp:main' %}">calendar</a>
+                </div>
+                <div class="link_box">
+                    <a href="">weather</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

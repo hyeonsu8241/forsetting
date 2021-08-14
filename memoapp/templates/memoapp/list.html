@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<style>
+
+    .container {
+        padding: 0;
+        margin: 0, auto;
+    }
+<!--    container는 기본적으로 bootstrap에 padding이랑 margin이 섞여있어서 이를 제거-->
+
+    .container a {
+      width: 45%:
+      max-width: 250px;
+    }
+<!--    모바일 사이즈에서는 45%를 차지, pc에서는 250px를 차지-->
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+
+</style>
+    {% if memo_list %}
+    <div class="container">
+      {% for memo in memo_list %}
+        <div>
+            <a href="{% url 'memoapp:detail' pk=memo.pk %}">
+            {{ memo.title | safe }}
+            </a>
+        </div>
+      {% endfor %}
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {% else %}
+
+    <div class ="text-center">
+      <h1>No Memos YET!</h1>
+    </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+    <div style="text-align: center">
+      <a href="{% url 'memoapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create Memo
+      </a>
+    </div>
+{% endblock %}

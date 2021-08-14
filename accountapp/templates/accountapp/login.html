@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div>
+    <div class="">
+        <div style="margin: 0.5rem;">
+            <h3><strong>Login</strong></h3>
+            <hr>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" value="login" class="btn btn-warning">
+            <a href="{% url 'accountapp:create' %}"><h6>SignUp</h6></a>
+        </form>
+    </div>
+</div>
+{% endblock %}

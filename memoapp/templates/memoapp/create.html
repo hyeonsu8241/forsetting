@@ -1,0 +1,50 @@
+<!--&lt;!&ndash;<form method="post" action="{% url 'memoapp:create'%}">&ndash;&gt;-->
+<!--&lt;!&ndash;    {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="id_new_post_title" name="post_title_text" placeholder="Insert Title"/><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;    {{ form|safe }}&ndash;&gt;-->
+<!--&lt;!&ndash;    <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit">submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--<form action="{% url 'memoapp:create' %}" method="POST">-->
+<!--  {% csrf_token %}-->
+<!--  <table>-->
+<!--    {{form.as_table}}-->
+<!--  </table>-->
+<!--  <input type="submit" value="submit">-->
+<!--</form>-->
+
+{% load bootstrap4 %}
+
+<!--{% block content %}-->
+<!--  <div>-->
+<!--    <div>-->
+<!--      <h4>끄적끄적</h4>-->
+<!--    </div>-->
+<!--    <form action="{% url 'memoapp:create' %}" method="POST" enctype="multipart/form-data">-->
+<!--      {% csrf_token %}-->
+<!--      <table>-->
+<!--        {{form.as_table}}-->
+<!--      </table>-->
+<!--      <input type="submit" class = "btn btn-dark rounded-pill col-6 mt-3">-->
+<!--    </form>-->
+<!--  </div>-->
+<!--{% endblock %}-->
+
+<!--<div id ="memo_add" class="modal fade" role="dialog" data-backdrop="false"-->
+<!--style="">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--      <h4>끄적끄적</h4>-->
+<!--      <hr>-->
+
+<!--      <form action="{% url 'memoapp:create' %}" method="post" class="form-inline">-->
+<!--        {% csrf_token %}-->
+<!--        <table>-->
+<!--          {{form.as_table}}-->
+<!--        </table>-->
+<!--        <input type="submit" class = "btn btn-primary" value="add">-->
+<!--        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>-->
+<!--      </form>-->
+
+<!--    </div>-->
+<!--</div>-->

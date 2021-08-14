@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <head>
+      <title></title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <div>
+        <h2>bookmarks</h2>
+        <hr>
+
+        {% for bookmark in bookmark_list %}
+        <div style="width:20rem; height:10rem; background-color: pink; border-radius: 1rem;">
+            <img src="{{ bookmark.favicon_url }}">
+            <a href="{{ bookmark.url }}">{{ bookmark.title | truncatechars:10 }}</a>
+            <button class="material-icons" data-toggle="modal" data-target="#delete_modal" class="material-icons">delete</button>
+            <button class="material-icons" data-toggle="modal" data-target="#bookmark_update" class="material-icons">edit</button>
+        </div>
+
+        <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">delete bookmark</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this bookmark?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="delete_modal({{ bookmark.pk }})" type="button" class="btn btn-dark">delete</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bookmark_update" class="modal fade" role="dialog" data-backdrop="false"
+         style="background-color: white; width: 50%; height: 50%; text-align: center; margin: auto auto; border: 1px solid gray;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <h4>edit bookmark</h4>
+                <hr>
+
+                <form action="{% url 'bookmarkapp:update' pk=bookmark.pk %}" method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input type="text" class="" id="title" name="title" placeholder="input title" value="{{ bookmark.title }}"><br>
+                    <input type="text" class="" id="url" name="url" placeholder="*input url*" value="{{ bookmark.url }}">
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="apply">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+        <hr>
+
+        <button type="button" data-target="#bookmark_add" data-toggle="modal">add</button>
+    </div>
+
+    {% include 'snippets/bookmark_create.html' %}
+
+    <script type="text/javascript">
+        function delete_modal( pk ) {
+            location.replace('/bookmarks/delete/'+pk);
+            alert('deleting completed');
+        }
+    </script>
+
+{% endblock %}

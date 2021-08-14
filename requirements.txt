@@ -10,6 +10,7 @@ django-magic==0.5a0
 django-redis==5.0.0
 django-summernote==0.8.11.6
 environ==1.0
+gunicorn==20.1.0
 idna==3.2
 importlib-metadata==4.6.3
 inda==0.2

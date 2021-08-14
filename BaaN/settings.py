@@ -32,13 +32,6 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 # Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
 
-CACHES = {
-    # read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found
-    'default': env.cache(),
-    # read os.environ['REDIS_URL']
-    'redis': env.cache('REDIS_URL')
-}
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
